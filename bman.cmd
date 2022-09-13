@@ -45,9 +45,9 @@ goto :eof
 	rename byond %MAJOR%-%MINOR%
 	del byond.zip
 
-	echo %MAJOR%-%MINOR%\bin\byond.exe > %MAJOR%-%MINOR%\byond.cmd
-	echo %MAJOR%-%MINOR%\bin\dm.exe > %MAJOR%-%MINOR%\dm.cmd
-	echo %MAJOR%-%MINOR%\bin\dreammaker.exe > %MAJOR%-%MINOR%\dreammaker.cmd
+	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\byond.exe ^%* > %MAJOR%-%MINOR%\byond.cmd
+	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe ^%* > %MAJOR%-%MINOR%\dm.cmd
+	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe ^%* > %MAJOR%-%MINOR%\dreammaker.cmd
 
 	popd
 	goto :eof
