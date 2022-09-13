@@ -48,6 +48,8 @@ goto :eof
 	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\byond.exe ^%* > %MAJOR%-%MINOR%\byond.cmd
 	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe ^%* > %MAJOR%-%MINOR%\dm.cmd
 	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe ^%* > %MAJOR%-%MINOR%\dreammaker.cmd
+	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamdaemon.exe ^%* > %MAJOR%-%MINOR%\dreamdaemon.cmd
+	echo start %BMAN_DOWNLOAD%\%MAJOR%\%MINOR%\bin\dreamseeker.exe ^%* > %MAJOR%-%MINOR%\dreamseeker.cmd
 
 	popd
 	goto :eof
@@ -69,6 +71,8 @@ goto :eof
 	copy /y %MAJOR%-%MINOR%\byond.cmd bin\byond.cmd
 	copy /y %MAJOR%-%MINOR%\dm.cmd bin\dm.cmd
 	copy /y %MAJOR%-%MINOR%\dreammaker.cmd bin\dreammaker.cmd
+	copy /y %MAJOR%-%MINOR%\dreamdaemon.cmd bin\dreamdaemon.cmd
+	copy /y %MAJOR%-%MINOR%\dreamseeker.cmd bin\dreamseeker.cmd
 
 	popd
 	goto :eof
