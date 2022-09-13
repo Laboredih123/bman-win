@@ -5,7 +5,7 @@ set OPTION=%1%
 set MAJOR=%2%
 set MINOR=%3%
 
-set BMAN_DOWNLOAD=C:\Users\Twigo\Documents\byond-versions
+set BMAN_DOWNLOAD=C:\Users\Twigo\Documents\bman
 
 if not exist %BMAN_DOWNLOAD% mkdir %BMAN_DOWNLOAD%
 if not exist %BMAN_DOWNLOAD%\bin mkdir %BMAN_DOWNLOAD%\bin
@@ -41,15 +41,15 @@ goto :eof
 	if exist %MAJOR%-%MINOR% echo Version %MAJOR%-%MINOR% is already downloaded, delete it before trying to download it again. & popd & goto :eof
 	powershell -command "& { iwr http://www.byond.com/download/build/%MAJOR%/%MAJOR%.%MINOR%_byond.zip -OutFile byond.zip }"
 	if not exist byond.zip echo Could not download Byond version %MAJOR%-%MINOR%. & popd & goto :eof
-	powershell -command "& { Expand-Archive -Force C:\Users\Twigo\Documents\byond-versions\byond.zip C:\Users\Twigo\Documents\byond-versions }"
+	powershell -command "& { Expand-Archive -Force %BMAN_DOWNLOAD%\byond.zip %BMAN_DOWNLOAD% }"
 	rename byond %MAJOR%-%MINOR%
 	del byond.zip
 
-	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\byond.exe ^%* > %MAJOR%-%MINOR%\byond.cmd
-	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe ^%* > %MAJOR%-%MINOR%\dm.cmd
-	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe ^%* > %MAJOR%-%MINOR%\dreammaker.cmd
-	echo start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamdaemon.exe ^%* > %MAJOR%-%MINOR%\dreamdaemon.cmd
-	echo start %BMAN_DOWNLOAD%\%MAJOR%\%MINOR%\bin\dreamseeker.exe ^%* > %MAJOR%-%MINOR%\dreamseeker.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\byond.exe %%* > %MAJOR%-%MINOR%\byond.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe %%* > %MAJOR%-%MINOR%\dm.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe %%* > %MAJOR%-%MINOR%\dreammaker.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamdaemon.exe %%* > %MAJOR%-%MINOR%\dreamdaemon.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%\%MINOR%\bin\dreamseeker.exe %%* > %MAJOR%-%MINOR%\dreamseeker.cmd
 
 	popd
 	goto :eof
