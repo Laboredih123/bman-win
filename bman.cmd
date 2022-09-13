@@ -1,5 +1,4 @@
 @echo off
-setlocal enabledelayedexpansion
 
 set OPTION=%1%
 set MAJOR=%2%
