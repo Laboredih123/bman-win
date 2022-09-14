@@ -48,7 +48,7 @@ goto :eof
 	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe %%* > %MAJOR%-%MINOR%\dm.cmd
 	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe %%* > %MAJOR%-%MINOR%\dreammaker.cmd
 	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamdaemon.exe %%* > %MAJOR%-%MINOR%\dreamdaemon.cmd
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%\%MINOR%\bin\dreamseeker.exe %%* > %MAJOR%-%MINOR%\dreamseeker.cmd
+	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamseeker.exe %%* > %MAJOR%-%MINOR%\dreamseeker.cmd
 
 	popd
 	goto :eof
