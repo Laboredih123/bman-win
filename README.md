@@ -6,6 +6,8 @@ Just change the `BMAN_DOWNLOAD` var to where you want it installed, then delete 
 
 Make sure this script has permission to access that folder
 
+Don't forget to add `[BMAN_DOWNLOAD]\bin` to `PATH`
+
 ## Use
 
 See bman -h for command info
