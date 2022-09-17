@@ -44,12 +44,11 @@ goto :eof
 	rename byond %MAJOR%-%MINOR%
 	del byond.zip
 
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\byond.exe %%* > %MAJOR%-%MINOR%\byond.cmd
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dm.exe %%* > %MAJOR%-%MINOR%\dm.cmd
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreammaker.exe %%* > %MAJOR%-%MINOR%\dreammaker.cmd
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamdaemon.exe %%* > %MAJOR%-%MINOR%\dreamdaemon.cmd
-	echo @start %BMAN_DOWNLOAD%\%MAJOR%-%MINOR%\bin\dreamseeker.exe %%* > %MAJOR%-%MINOR%\dreamseeker.cmd
+	pushd %MAJOR%-%MINOR%\bin
 
+	for %%i in (*) do mklink /h ..\%%i %%i
+
+	popd
 	popd
 	goto :eof
 
@@ -67,11 +66,7 @@ goto :eof
 	if not exist %MAJOR%-%MINOR% echo You do not have Byond version %MAJOR%-%MINOR% downloaded. & popd & goto :eof
 	if not exist bin mkdir bin & copy %~dp0 bin
 
-	copy /y %MAJOR%-%MINOR%\byond.cmd bin\byond.cmd
-	copy /y %MAJOR%-%MINOR%\dm.cmd bin\dm.cmd
-	copy /y %MAJOR%-%MINOR%\dreammaker.cmd bin\dreammaker.cmd
-	copy /y %MAJOR%-%MINOR%\dreamdaemon.cmd bin\dreamdaemon.cmd
-	copy /y %MAJOR%-%MINOR%\dreamseeker.cmd bin\dreamseeker.cmd
+	for %%a in (%MAJOR%-%MINOR%\*.*) do copy /y /l %%a bin\
 
 	popd
 	goto :eof
@@ -80,7 +75,7 @@ goto :eof
 	pushd %BMAN_DOWNLOAD%
 	echo Installed Byond versions:
 
-	for /D %%d in (*-*) do echo 	%%d
+	for /d %%d in (*-*) do echo 	%%d
 
 	popd
 	goto :eof
