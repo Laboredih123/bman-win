@@ -4,7 +4,7 @@ set OPTION=%1%
 set MAJOR=%2%
 set MINOR=%3%
 
-set BMAN_DOWNLOAD=C:\Users\Twigo\Documents\bman
+set BMAN_DOWNLOAD=C:\ByondVersions
 
 if not exist %BMAN_DOWNLOAD% mkdir %BMAN_DOWNLOAD%
 if not exist %BMAN_DOWNLOAD%\bin mkdir %BMAN_DOWNLOAD%\bin
@@ -38,6 +38,7 @@ goto :eof
 	pushd %BMAN_DOWNLOAD%
 
 	if exist %MAJOR%-%MINOR% echo Version %MAJOR%-%MINOR% is already downloaded, delete it before trying to download it again. & popd & goto :eof
+	if %MAJOR% LSS 425 echo Major version too old, zip files not available. & popd & goto :eof
 	powershell -command "& { iwr http://www.byond.com/download/build/%MAJOR%/%MAJOR%.%MINOR%_byond.zip -OutFile byond.zip }"
 	if not exist byond.zip echo Could not download Byond version %MAJOR%-%MINOR%. & popd & goto :eof
 	powershell -command "& { Expand-Archive -Force %BMAN_DOWNLOAD%\byond.zip %BMAN_DOWNLOAD% }"
@@ -60,15 +61,23 @@ goto :eof
 	popd
 	goto :eof
 
-:set
+:set	
 	pushd %BMAN_DOWNLOAD%
 
 	if not exist %MAJOR%-%MINOR% echo You do not have Byond version %MAJOR%-%MINOR% downloaded. & popd & goto :eof
 	if not exist bin mkdir bin & copy %~dp0 bin
 
-	for %%a in (%MAJOR%-%MINOR%\*.*) do copy /y /l %%a bin\
-
+	echo Killing processes
+	taskkill /F /IM byond.exe
+	taskkill /F /IM dreamseeker.exe
+	taskkill /F /IM dreammaker.exe
+	taskkill /F /IM dreamdaemon.exe
+	
+	echo Copying Files
+	for %%a in (%MAJOR%-%MINOR%\*.*) do copy /y /l %%a bin\ >nul && echo %%a copied
 	popd
+	echo Starting Byond
+	start byond.exe
 	goto :eof
 
 :list
